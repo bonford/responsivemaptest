@@ -1,0 +1,76 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+<TITLE> New Document </TITLE>
+<META NAME="Generator" CONTENT="EditPlus">
+<META NAME="Author" CONTENT="">
+<META NAME="Keywords" CONTENT="">
+<META NAME="Description" CONTENT="">
+
+<link rel="stylesheet" href="http://bootswatch.com/simplex/bootstrap.min.css" />
+
+ <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCVAGiYblnsWASLhMhdEHC4RKpvG0OeZ-0&callback=myMap"></script>
+<script>
+function myMap() {
+var mapOptions = {
+        zoom: Math.ceil(Math.log2(document.body.clientWidth))-9,
+        center: new google.maps.LatLng(0, 0),
+        mapTypeId: google.maps.MapTypeId.HYBRID
+    };
+var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+}
+
+// Resize stuff...
+   google.maps.event.addDomListener(window, "resize", function() {
+   var center = map.getCenter();
+   google.maps.event.trigger(map, "resize");
+   map.setCenter(new google.maps.LatLng(0, 0)); 
+   map.setZoom(Math.ceil(Math.log2(document.body.clientWidth))-9);
+   map.setWidth(document.body.clientWidth);
+});
+</script>
+
+
+
+<style type="text/css">
+body {
+  color: #404040;
+  font: 400 15px/22px 'Source Sans Pro', 'Helvetica Neue', Sans-serif;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+
+
+.map{
+    overflow:hidden;
+   height:300px;;
+}
+
+
+</style>
+</HEAD>
+
+<BODY>
+  
+
+
+
+<div class="map">
+    
+</div>
+
+
+
+
+
+
+</BODY>
+</HTML>
