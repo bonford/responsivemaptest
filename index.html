@@ -1,0 +1,88 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+<TITLE> New Document </TITLE>
+<META NAME="Generator" CONTENT="EditPlus">
+<META NAME="Author" CONTENT="">
+<META NAME="Keywords" CONTENT="">
+<META NAME="Description" CONTENT="">
+
+
+
+ 
+
+
+<style type="text/css">
+body {
+  color: #404040;
+  font: 400 15px/22px 'Source Sans Pro', 'Helvetica Neue', Sans-serif;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/* The page is split between map and sidebar - the sidebar gets 1/3, map
+gets 2/3 of the page. You can adjust this to your personal liking. */
+.sidebar {
+  width: 33.3333%;
+}
+
+#map {
+  border-left: 1px solid #fff;
+  position: absolute;
+  left: 33.3333%;
+  width: 66.6666%;
+  top: 0;
+  bottom: 0;
+}
+
+.pad2 {
+  padding: 20px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+
+</style>
+</HEAD>
+
+<BODY>
+
+    <div class='sidebar'>
+  <div class='heading'>
+    <h1>Our locations</h1>
+  </div>
+  <div id='listings' class='listings'>
+   <div class="listing-1">Listing 1</div>
+   <div class="listing-2">Listing 2</div>
+   <div class="listing-3">Listing 3</div>
+   <div class="listing-4">Listing 4</div>
+   <div class="listing-5">Listing 5</div>
+
+
+  </div>
+</div>
+<div id='map' class='map pad2'>Map</div>
+
+<script>
+function myMap() {
+var mapOptions = {
+        zoom: Math.ceil(Math.log2(document.body.clientWidth))-9,
+        center: new google.maps.LatLng(0, 0),
+        mapTypeId: google.maps.MapTypeId.HYBRID
+    };
+var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+}
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCVAGiYblnsWASLhMhdEHC4RKpvG0OeZ-0&callback=myMap"></script>
+
+</BODY>
+</HTML>
