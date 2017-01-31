@@ -7,7 +7,7 @@
 <META NAME="Keywords" CONTENT="">
 <META NAME="Description" CONTENT="">
 
-
+<link rel="stylesheet" href="http://bootswatch.com/simplex/bootstrap.min.css" />
 
  
 
@@ -30,6 +30,7 @@ body {
 /* The page is split between map and sidebar - the sidebar gets 1/3, map
 gets 2/3 of the page. You can adjust this to your personal liking. */
 .sidebar {
+      position: relative;
   width: 33.3333%;
 }
 
@@ -49,13 +50,49 @@ gets 2/3 of the page. You can adjust this to your personal liking. */
   box-sizing: border-box;
 }
 
+@media screen and (max-width: 660px) {
+  #map, .sidebar {
+
+    height: 50%;
+    width: 100%;
+  }
+  #map {
+    top: 0;
+    bottom: 50%;
+    left: 0;
+  }
+  .sidebar {
+    top: 50%;
+    bottom: 100%;
+  }
+}
+
 
 </style>
 </HEAD>
 
 <BODY>
+  
 
     <div class='sidebar'>
+      <nav class="navbar navbar-inverse">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">FURTHER data</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
   <div class='heading'>
     <h1>Our locations</h1>
   </div>
@@ -70,6 +107,7 @@ gets 2/3 of the page. You can adjust this to your personal liking. */
   </div>
 </div>
 <div id='map' class='map pad2'>Map</div>
+
 
 <script>
 function myMap() {
