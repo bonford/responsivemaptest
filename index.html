@@ -6,6 +6,7 @@
 <META NAME="Author" CONTENT="">
 <META NAME="Keywords" CONTENT="">
 <META NAME="Description" CONTENT="">
+<script src="breaky.js"></script>
 
 <link rel="stylesheet" href="http://bootswatch.com/simplex/bootstrap.min.css" />
 
@@ -93,7 +94,97 @@ gets 2/3 of the page. You can adjust this to your personal liking. */
 }
 
 
+
+/**
+ * Breaky css values will not show up in content, but can be 
+ * queried by JavaScript to know which breakpoint is active.
+ * Add or remove as many breakpoints as you like.
+ */
+
+html:before {
+  content: "mobile,tablet,desktop";
+  display: none;
+}
+html:before {
+  display: none;
+}
+@media (min-width: 320px) {
+  body:before {
+    content: "mobile";
+  }
+}
+@media (min-width: 513px) {
+  body:before {
+    content: "tablet";
+  }
+}
+@media (min-width: 1025px) {
+  body:before {
+    content: "desktop";
+  }
+}
+
+
 </style>
+<script>
+
+function myMap() {
+var mapOptions = {
+        zoom: Math.ceil(Math.log2(document.body.clientWidth))-9,
+        center: new google.maps.LatLng(0, 0),
+        mapTypeId: google.maps.MapTypeId.HYBRID
+    };
+
+
+   // document.write("log width: " + Math.ceil(Math.log2(document.body.clientWidth)));
+var gmap = new google.maps.Map(document.getElementById("map"), mapOptions);
+
+
+google.maps.event.addListener(gmap, 'bounds_changed', function() {
+    var spherical = google.maps.geometry.spherical; 
+    bounds = gmap.getBounds(); 
+ 
+    cor1 = bounds.getNorthEast(); 
+    cor2 = bounds.getSouthWest(); 
+    cor3 = new google.maps.LatLng(cor2.lat(), cor1.lng()); 
+    cor4 = new google.maps.LatLng(cor1.lat(), cor2.lng()); 
+    width = spherical.computeDistanceBetween(cor1,cor3); 
+    height = spherical.computeDistanceBetween( cor1, cor4);
+       console.log("bounds:" + width + " " + height );
+     
+      });
+
+document.addEventListener("DOMContentLoaded", function(event) {
+   
+        
+
+
+	//Optional Fix for IE8
+	breaky.initIE8(["mobile","tablet","desktop"], "desktop");
+
+	var message1 = document.getElementById("message1");
+	var message2 = document.getElementById("message2");
+	var message3 = document.getElementById("message3");
+
+
+	// First Message
+	breaky.at("mobile", function() {
+    message1.innerHTML = "mobile: " + width + " " + height;
+	});
+
+	breaky.at("tablet", function() {
+		message1.innerHTML = "tablet";
+	});
+
+	breaky.at("desktop", function() {
+		message1.innerHTML = "desktop";
+	});
+
+
+
+});
+
+}</script>
 </HEAD>
 
 <BODY>
@@ -103,15 +194,10 @@ gets 2/3 of the page. You can adjust this to your personal liking. */
 
     <div class='sidebar'>
 
-  <div class='heading'>
-    <h1>Our locations</h1>
-  </div>
+  
   <div id='listings' class='listings'>
-   <div class="listing-1">Listing 1</div>
-   <div class="listing-2">Listing 2</div>
-   <div class="listing-3">Listing 3</div>
-   <div class="listing-4">Listing 4</div>
-   <div class="listing-5">Listing 5</div>
+   <div id="message1"></div>
+
 
 
   </div>
@@ -119,29 +205,11 @@ gets 2/3 of the page. You can adjust this to your personal liking. */
 <div id='map' class='map pad2'>Map</div>
 
 
-<script>
-function myMap() {
-var mapOptions = {
-        zoom: Math.ceil(Math.log2(document.body.clientWidth))-9,
-        center: new google.maps.LatLng(0, 0),
-        mapTypeId: google.maps.MapTypeId.HYBRID
-    };
-    document.write("log width: " + Math.ceil(Math.log2(document.body.clientWidth)));
-var map = new google.maps.Map(document.getElementById("map"), mapOptions);
 
-google.maps.event.addDomListener(window, "resize", function() {
- var center = map.getCenter();
- google.maps.event.trigger(map, "resize");
- map.setCenter(new google.maps.LatLng(0, 0)); 
- map.setZoom(Math.ceil(Math.log2(document.body.clientWidth))-9);
- map.setHeight(map.getWidth() * 1.5);
-});
-}
+<script src="https://maps.googleapis.com/maps/api/js?libraries=geometry&key=AIzaSyCVAGiYblnsWASLhMhdEHC4RKpvG0OeZ-0&callback=myMap"></script>
 
 
-</script>
 
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCVAGiYblnsWASLhMhdEHC4RKpvG0OeZ-0&callback=myMap"></script>
 
 </BODY>
 </HTML>
