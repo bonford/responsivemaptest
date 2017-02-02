@@ -1,3 +1,6 @@
 good responsive article
 
 https://derekswingley.com/2016/09/08/making-a-map-plus-sidebar-layout-responsive/
+
+map set up: absolutely positioned map in a relatively positioned wrapper
+            adjust the map "viewport" at the breakpoints with top, bottom, left, right on map element and zoom
