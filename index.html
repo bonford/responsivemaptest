@@ -130,7 +130,8 @@ html:before {
 
 function myMap() {
 var mapOptions = {
-        zoom: Math.ceil(Math.log2(document.body.clientWidth))-9,
+        //zoom: Math.ceil(Math.log2(document.body.clientWidth))-9,
+        zoom: 2,
         center: new google.maps.LatLng(0, 0),
         mapTypeId: google.maps.MapTypeId.HYBRID
     };
@@ -138,21 +139,9 @@ var mapOptions = {
 
    // document.write("log width: " + Math.ceil(Math.log2(document.body.clientWidth)));
 var gmap = new google.maps.Map(document.getElementById("map"), mapOptions);
+// bounds of the desired area
 
-
-google.maps.event.addListener(gmap, 'bounds_changed', function() {
-    var spherical = google.maps.geometry.spherical; 
-    bounds = gmap.getBounds(); 
- 
-    cor1 = bounds.getNorthEast(); 
-    cor2 = bounds.getSouthWest(); 
-    cor3 = new google.maps.LatLng(cor2.lat(), cor1.lng()); 
-    cor4 = new google.maps.LatLng(cor1.lat(), cor2.lng()); 
-    width = spherical.computeDistanceBetween(cor1,cor3); 
-    height = spherical.computeDistanceBetween( cor1, cor4);
-       console.log("bounds:" + width + " " + height );
-     
-      });
+var bounds = gmap.getBounds(); 
 
 document.addEventListener("DOMContentLoaded", function(event) {
    
@@ -165,19 +154,28 @@ document.addEventListener("DOMContentLoaded", function(event) {
 	var message1 = document.getElementById("message1");
 	var message2 = document.getElementById("message2");
 	var message3 = document.getElementById("message3");
+  var mapContainer = document.getElementById("map");
 
 
 	// First Message
 	breaky.at("mobile", function() {
     message1.innerHTML = "mobile: " + width + " " + height;
+    map.style.height = "50px";
+    //gmap.setBounds(bounds);
+    console.log("getting bounds in mobile: " + gmap.getBounds);
 	});
 
 	breaky.at("tablet", function() {
-		message1.innerHTML = "tablet";
+		message1.innerHTML = "tablet " + width + " " + height;
+    map.style.height = "400px";
+    console.log("getting bounds in tablet: " + gmap.getBounds);
 	});
 
 	breaky.at("desktop", function() {
-		message1.innerHTML = "desktop";
+		message1.innerHTML = "desktop " + width + " " + height;
+    map.style.height = "500px";
+   // gmap.setBounds(bounds);
+    console.log("getting bounds in desktop: " + gmap.getBounds);
 	});
 
 
