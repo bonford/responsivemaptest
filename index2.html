@@ -1,76 +1,57 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<HTML>
-<HEAD>
-<TITLE> New Document </TITLE>
-<META NAME="Generator" CONTENT="EditPlus">
-<META NAME="Author" CONTENT="">
-<META NAME="Keywords" CONTENT="">
-<META NAME="Description" CONTENT="">
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+    #map-wrapper {
+/* position:relative; */
+height: 500px;
+width: 1000px;
+}
 
-<link rel="stylesheet" href="http://bootswatch.com/simplex/bootstrap.min.css" />
+#googleMap {
+ position: absolute; 
+top: 0;
+bottom: 0;
+right: 0;
+left: 0;
+}
+    </style>
 
- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCVAGiYblnsWASLhMhdEHC4RKpvG0OeZ-0&callback=myMap"></script>
+
+
+  </head>
+<body>
+
+<h1>My First Google Map</h1>
+<div id="map-wrapper">
+<div id="googleMap" style="width:100%;height:400px;"></div>
+</div>
 <script>
 function myMap() {
-var mapOptions = {
-        zoom: Math.ceil(Math.log2(document.body.clientWidth))-9,
-        center: new google.maps.LatLng(0, 0),
-        mapTypeId: google.maps.MapTypeId.HYBRID
-    };
-var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+var mapProp= {
+    center:new google.maps.LatLng(51.508742,-0.120850),
+    zoom:5,
+};
+var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
 }
 
-// Resize stuff...
-   google.maps.event.addDomListener(window, "resize", function() {
-   var center = map.getCenter();
-   google.maps.event.trigger(map, "resize");
-   map.setCenter(new google.maps.LatLng(0, 0)); 
-   map.setZoom(Math.ceil(Math.log2(document.body.clientWidth))-9);
-   map.setWidth(document.body.clientWidth);
-});
+function changeWidth() {
+  	var map = document.getElementById("googleMap").style.top = "-200px";
+    
+}
+
+function changeBack() {
+  	var map = document.getElementById("googleMap").style.top = "0";
+    
+}
 </script>
 
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCVAGiYblnsWASLhMhdEHC4RKpvG0OeZ-0&callback=myMap"></script>
+<div style="clear:both"></div>
+<a style="z-index:1100" href="javascript_required.html" onclick="changeWidth(); return false;">Change size</a><br>
+<a style="z-index:1100" href="javascript_required.html" onclick="changeBack(); return false;">Change back</a><br>
 
 
-<style type="text/css">
-body {
-  color: #404040;
-  font: 400 15px/22px 'Source Sans Pro', 'Helvetica Neue', Sans-serif;
-  margin: 0;
-  padding: 0;
-  -webkit-font-smoothing: antialiased;
-}
+</body>
+</html>
 
-* {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-}
-
-
-
-.map{
-    overflow:hidden;
-   height:300px;;
-}
-
-
-</style>
-</HEAD>
-
-<BODY>
-  
-
-
-
-<div class="map">
-    
-</div>
-
-
-
-
-
-
-</BODY>
-</HTML>
