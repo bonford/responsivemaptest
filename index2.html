@@ -34,10 +34,25 @@ a:hover {
   color: #101010;
 }
 
+#sidebar-wrapper {
+  position:relative;
+   padding-bottom:50%;
+    width: 33.3333%;
+    float:left;
+}
+
+#sidebar-wrapper > div {
+  position:absolute;
+  top:0;
+  bottom:0;
+  left:0;
+  right:0;
+  
+}
+
 .sidebar {
-  position: absolute;
-  width: 33.3333%;
-  height: 90%;
+
+ 
   top: 0;
   left: 0;
   overflow: hidden;
@@ -49,14 +64,24 @@ a:hover {
   padding: 20px;
 }
 
+#map-wrapper {
+  position: relative;
+  width:66.6666%;
+    left: 33.3333%;
+    padding-bottom: 50%;
+    
+}
+
+
+
 .map {
-  position: absolute;
-  left: 33.3333%;
-  width: 66.6666%;
+  position: absolute;  
   top: 0;
   bottom: 0;
-  height:90%;
- 
+left: 0;
+right: 0;
+
+
 }
 
 .heading {
@@ -98,7 +123,7 @@ a:hover {
 }
 
 ::-webkit-scrollbar {
-  width: 3px;
+  width: 10px;
   height: 3px;
   border-left: 0;
   background: rgba(0, 0, 0, 0.1);
@@ -109,7 +134,7 @@ a:hover {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #00853e;
+  background: #99b3e6;
   border-radius: 0;
 }
 
@@ -149,20 +174,48 @@ a:hover {
   </head>
 <body>
 
-
+<div id="sidebar-wrapper">
 <div class='sidebar'>
   <div class='heading'>
-    <h1>Our locations</h1>
+    <h1>Stock Exchange Indices</h1>
   </div>
-  <div id='listings' class='listings'>
-
-    <div class="item" id="listing-1"><a href="#">London</a></div>
-    <div class="item"  id="listing-2"><a href="#">New York</a></div>
-    <div class="item"  id="listing-3"><a href="#">Paris</a></div>
-    <div class="item"  id="listing-4"><a href="#">Toronto</a></div>
-  </div>
+ <ul id='listings' class='listings'>
+     <li class="item"><a href="#">Bombay (BSE 30)</a></li> 
+  <li class="item"><a href="#">Brussels (BEL-20)</a></li> 
+  <li class="item"><a href="#">Buenos Aires (MerVal)</a></li> 
+  <li class="item"><a href="#">Copenhagen (OMX 20)</a></li> 
+  <li class="item"><a href="#">Dublin (ISEQ20)</a></li> 
+  <li class="item"><a href="#">Frankfurt (DAX)</a></li> 
+  <li class="item"><a href="#">Hong Kong (Hang Seng)</a></li> 
+  <li class="item"><a href="#">Jakarta (Jakarta Composite)</a></li> 
+  <li class="item"><a href="#">Kuala Lumpur (KLSE Composite)</a></li> 
+  <li class="item"><a href="#">London (FTSE 100)</a></li> 
+  <li class="item"><a href="#">Mexico City (IPC)</a></li> 
+  <li class="item"><a href="#">Milan (SP Mib)</a></li> 
+  <li class="item"><a href="#">New York (SP 500)</a></li> 
+  <li class="item"><a href="#">Oslo (Total Share)</a></li> 
+  <li class="item"><a href="#">Paris (CAC 40)</a></li> 
+  <li class="item"><a href="#">Sao Paulo (Bovespa)</a></li> 
+  <li class="item"><a href="#">Seoul (Seoul Composite)</a></li> 
+  <li class="item"><a href="#">Shanghai (Shanghai Composite)</a></li> 
+  <li class="item"><a href="#">Singapore (Strait Times)</a></li> 
+  <li class="item"><a href="#">Stockholm (OMX Stockholm)</a></li> 
+  <li class="item"><a href="#">Sydney (All Ordinaries)</a></li> 
+  <li class="item"><a href="#">Taiwan (Taiwan Weighted)</a></li> 
+  <li class="item"><a href="#">Tel Aviv (TA-100)</a></li> 
+  <li class="item"><a href="#">Tokyo (Nikkei 225)</a></li> 
+  <li class="item"><a href="#">Toronto (SP TSX Composite)</a></li> 
+  <li class="item"><a href="#">Vienna (ATX)</a></li> 
+  <li class="item"><a href="#">Wellington (NZSE 50)</a></li> 
+  <li class="item"><a href="#">Zurich (Swiss Market)</a></li> 
+  </ul>
+  
 </div>
+</div>
+
+<div id="map-wrapper">
 <div id='map' class='map pad2'>Map</div>
+</div>
     
 
 
@@ -170,11 +223,31 @@ a:hover {
 <script>
 function myMap() {
 var mapProp= {
-    center:new google.maps.LatLng(51.508742,-0.120850),
+    //center:new google.maps.LatLng(51.508742,-0.120850),
+    center:new google.maps.LatLng(30.508742,-0.120850),
     zoom: Math.ceil(Math.log2(document.body.clientWidth))-9,
 };
 var map=new google.maps.Map(document.getElementById("map"),mapProp);
 console.log(map);
+
+var addEvent = function(object, type, callback) {
+    if (object == null || typeof(object) == 'undefined') return;
+    if (object.addEventListener) {
+        object.addEventListener(type, callback, false);
+    } else if (object.attachEvent) {
+        object.attachEvent("on" + type, callback);
+    } else {
+        object["on"+type] = callback;
+    }
+};
+
+
+
+addEvent(window, "resize", function(event) {
+  map.setCenter(new google.maps.LatLng(30.508742,-0.120850));
+  map.setZoom(Math.ceil(Math.log2(document.body.clientWidth))-9);
+  console.log('resized');
+});
 }
 
 </script>
