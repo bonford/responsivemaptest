@@ -86,26 +86,55 @@ right: 0;
 
 .heading {
   background: #fff;
-  border-bottom: 1px solid #eee;
+border-bottom: 1px solid #99b3e6;
+border-right: 11px solid #99b3e6;;
   height: 60px;
   line-height: 60px;
-  padding: 0 10px;
+  padding: 0;
 }
 
 .listings {
+ 
   height: 100%;
   overflow: auto;
   padding-bottom: 60px;
+  padding-top:0px;
+  list-style:none;
+  padding-left:0;
+  margin-top:0;
 }
 
 .listings .item {
   display: block;
-  border-bottom: 1px solid #eee;
-  padding: 10px;
+  border-top:1px solid #99b3e6; 
+     border-left: 1px solid #99b3e6;
+    border-right: 1px solid #99b3e6;
+ 
   text-decoration: none;
 }
+ul.listings a {
+    display: block;
+    height: 3em;
+    line-height: 3em;
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+    padding-left:10px;
+}
+
+ul.listings a:hover {
+    /* background: #ffecc7 url(select.png) repeat-x 0 top; */
+    background: #ffecc7; 
+}
+
+.item {
+
+  margin:0;
+}
+
 
 .listings .item:last-child { border-bottom: none; }
+.listings .item:first-child { border-top: none; }
 
 .listings .item .title {
   display: block;
